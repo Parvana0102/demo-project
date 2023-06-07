@@ -22,24 +22,20 @@ public class StepDefs {
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get("http://etsy.com");
     }
-
     @When("^I search for \"([^\"]*)\"$")
     public void i_search_for(String search) throws Throwable {
         Driver.getDriver().findElement(By.cssSelector("[id*='search-query']")).sendKeys(search + Keys.ENTER);
     }
-
     @Then("^I should see the results$")
     public void i_should_see_the_results() throws Throwable {
         Thread.sleep(2000);
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("search"));
     }
-
     @Then("^I should see more results$")
     public void i_should_see_more_results() throws Throwable {
         Thread.sleep(2000);
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("search"));
     }
-
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
@@ -47,9 +43,6 @@ public class StepDefs {
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
         Driver.closeDriver();
-
-
-
 
     }
 
